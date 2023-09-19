@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  root "static_pages#landing_page"
+  devise_for :users
+  root 'home#index'
+  get 'home/index'
+  resources :courses
+
   get 'static_pages/landing_page', as: "landing_page"
-  get 'static_pages/privacy_policy', as: "privacy_policy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

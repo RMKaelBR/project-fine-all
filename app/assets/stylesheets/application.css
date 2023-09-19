@@ -17,8 +17,121 @@
  main {
   flex-direction: column;
  }
+ 
+ nav {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  user-select: none;
+ }
 
  a {
-  color: gold;
-  text-decoration: underline;
+  color: darkblue;
  } 
+
+ a:hover {
+  color: blue;
+  text-decoration: underline;
+ }
+
+ input[type="submit"] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+  background-color: lightblue;
+ }
+
+ button {
+  color: darkblue;
+ }
+
+ button:hover {
+  color: blue;
+  text-decoration: underline;
+ }
+
+ .deleteColor {
+  color: maroon;
+ }
+
+ .deleteColor:hover {
+  color: red;
+  text-shadow: maroon;
+ }
+
+ .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+}
+
+#dropdownNavbar {
+  position: absolute;
+  /* background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1; */
+}
+
+#dropdownNavbar > ul > li > a {
+  color: lightgray;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+ /* input[type="submit"] {
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+ }
+
+ input[type="submit"]:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+ }
+
+ input[type="submit"]:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+input[type="submit"]:focus {
+  outline: 1px transparent;
+} */
