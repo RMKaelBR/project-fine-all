@@ -6,10 +6,12 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Courses <span class="font-normal text-2xl">(<%= @courses.count %>)</span></h1>
-    <%= link_to 'New course', new_course_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New course', new_course_path, class: "rounded-lg my-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="courses" class="min-w-full">
-    <%= render @courses %>
+  <div class="card-columns">
+    <% @courses.each do |course| %>
+      <%= render 'courses/course', course: course %>
+    <% end %>
   </div>
 </div>

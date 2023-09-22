@@ -17,12 +17,12 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
+    <%= form.label :description, for: "course_description" %>
+    <%= form.rich_text_area :description, class: "rich-text-area" %>
   </div>
 
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer hover:bg-blue-700 hover:text-yellow-300" %>
   </div>
 <% end %>

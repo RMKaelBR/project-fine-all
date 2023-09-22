@@ -1,5 +1,46 @@
 <div>
   <%= render 'navigation/navigation' %>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+  <h1 class="font-bold text-6xl">Home#index</h1>
+  <div class="bait-banner flex flex-row">
+    <div class="bait">
+      <h1><i class="fa-solid fa-graduation-cap"></i></h1>
+      <span><%= Course.count %> online courses</span>
+      <span>Learn a wealthy coverage of topics</span>
+    </div>
+    <div class="bait">
+      <h1><i class="fa-solid fa-chalkboard-teacher"></i></h1>
+      <span><%= Course.distinct.count(:user_id) %> experienced instructors</span>
+      <span>Expertise on-demand</span>
+    </div>
+    <div class="bait">
+      <h1><i class="fa-solid fa-user-graduate"></i></h1>
+      <span><%= User.count %> active learners</span>
+      <span>Join a community of learners</span>
+    </div>
+    <div class="bait">
+      <h1><i class="fa-solid fa-infinity"></i></h1>
+      <span>Lifetime access</span>
+      <span>Study at your own pace</span>
+    </div>
+  </div>
+  <h2 class="text-4xl">Popular Courses</h2>
+    <div class="card-columns">
+    <% @courses.each do |course| %>
+      <%= render 'courses/course', course: course %>
+    <% end %>
+  </div>
+  <br/>
+  <h2 class="text-4xl">Top-rated Courses</h2>
+    <div class="card-columns">
+    <% @courses.each do |course| %>
+      <%= render 'courses/course', course: course %>
+    <% end %>
+  </div>
+  <br/>
+  <h2 class="text-4xl">New Courses</h2>
+    <div class="card-columns">
+      <% @new_courses.each do |course| %>
+        <%= render 'courses/course', course: course %>
+      <% end %>
+    </div>
 </div>

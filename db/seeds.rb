@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 # User.create!(email: 'admin@example.com', password: 'theadmin2020', password_confirmation: 'theadmin2020')
-User.create!(email: 'chibbycat@mail.com', password: 'chibbycat123', password_confirmation: 'chibbycat123')
+# User.create!(email: 'chibbycat@mail.com', password: 'chibbycat123', password_confirmation: 'chibbycat123')
 
 # 30.times do
 #   Course.create!([{
@@ -20,6 +20,6 @@ User.create!(email: 'chibbycat@mail.com', password: 'chibbycat123', password_con
   Course.create!([{
     title: Faker::Fantasy::Tolkien.poem,
     description: Faker::JapaneseMedia::StudioGhibli.quote,
-    user_id: 2
+    user_id: 3
   }])
 end

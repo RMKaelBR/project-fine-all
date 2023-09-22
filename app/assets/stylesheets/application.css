@@ -26,14 +26,18 @@
   user-select: none;
  }
 
- a {
-  color: darkblue;
+ /* a {
+  display: inline-block;
+ } */
+ /* a {
+  color: blue;
+  text-decoration: underline;
  } 
 
  a:hover {
   color: blue;
   text-decoration: underline;
- }
+ } */
 
  button {
   color: darkblue;
@@ -51,6 +55,10 @@
  .deleteColor:hover {
   color: red;
   text-shadow: maroon;
+ }
+
+ .link-style {
+  color:#0c7cc7;
  }
 
  .dropdown {
@@ -128,6 +136,41 @@
   top: 5px;
   right: 10px;
   display: inline-block;
+}
+
+.passwordHint {
+  font-size: small;
+}
+
+.bait {
+  padding: 20px;
+}
+
+.bait > h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.bait > span {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.25rem;
+}
+
+.card {
+  max-height: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .font-normal a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.card-columns {
+  column-count: 3;
+  column-gap: 10px;
 }
 
  /* input[type="submit"] {
