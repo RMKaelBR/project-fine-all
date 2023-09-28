@@ -59,6 +59,21 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  smtp_username = ENV['SMTP_USERNAME']
+  smtp_password = ENV['SMTP_PASSWORD']
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.zoho.com', 
+    port:                 587,
+    domain:               'http:localhost:3000',
+    user_name:            smtp_username, 
+    password:             smtp_password,
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 }
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
