@@ -1,15 +1,28 @@
-<div class="card block min-h-400 max-w-md p-6 my-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<div class="card block min-h-400 max-w-md p-6 my-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-indigo-100 dark:bg-indigo-900 dark:border-gray-700 dark:hover:bg-indigo-900">
   <h5 class="mb-2 text-2xl font-bold tracking-tight  dark:text-gray-200">
     <i class="fa-solid fa-user"></i> <%= user.email %>
   </h5>
   <div class="mt-4 text-xs font-bold tracking-tight py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
     <span><i class="fa-regular fa-clock"></i> Signed up <%= time_ago_in_words(user.created_at) %> ago </span>
   </div>
-  <div class="font-normal bg-gray-700 text-gray-800 dark:text-gray-300">
+  <br/>
+  <div class="font-normal text-xs bg-indigo-900 text-gray-800 dark:text-gray-300">
     <span class="block"><strong>Times signed in:</strong> <%= user.sign_in_count %></span>
     <span class="block"><strong>Most recent sign in:</strong> <%= user.current_sign_in_at %></span>
     <span class="block"><strong>Last sign in:</strong> <%= user.last_sign_in_at %></span>
     <span class="block"><strong>Most recent IP Address:</strong> <%= user.current_sign_in_ip %></span>
     <span class="block"><strong>Last IP Address:</strong> <%= user.last_sign_in_ip %></span>
+  </div>
+  <div class="mt-4 text-xs font-bold tracking-tight py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
+    <span>Confirmed email? 
+      <% if user.confirmed_at.present? %>
+        <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+        Yes</span>
+      <% else %>
+        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+        No</span>
+      <% end %>
+    </span>
+    
   </div>
 </div>
