@@ -61,11 +61,8 @@ trix-editor > a {
 }
 
 a {
-  cursor: pointer;
-}
-
-a:hover {
   color: blue;
+  cursor: pointer;
 }
 
 trix-editor > pre {
@@ -101,6 +98,10 @@ text-shadow: maroon;
 
 .link-style {
 color:#0c7cc7;
+}
+
+.button-style {
+  color: black;
 }
 
 .dropdown {
