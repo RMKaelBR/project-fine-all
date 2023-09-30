@@ -3,11 +3,16 @@
     <i class="fa-solid fa-book-open"></i> <%= course.title %>
   </h5>
   <span class="font-normal text-gray-800 dark:text-gray-300">
-    <%= course.description.to_plain_text %>
+    <%= course.short_description %>
   </span>
-  <div class="mt-4 text-xs font-bold tracking-tight bg-gray-700 py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
-    <span><i class="fa-regular fa-clock"></i> <%= course.created_at.strftime('%d-%b-%Y') %></span>
-    <br/>
-    <span><i class="fa-solid fa-chalkboard-user"></i> <%= course.user %></span>
+  <div class="mt-4 flex text-xs font-bold tracking-tight bg-gray-700 py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
+    <div>
+      <span class="block"><i class="fa-regular fa-clock"></i> <span class="ml-2"><%= course.created_at.strftime('%d-%b-%Y') %></span></span>
+      <span class="block"><i class="fa-solid fa-chalkboard-user"></i> <span class="ml-1"><%= course.user %></span></span>
+    </div>
+    <div class="ml-3">
+      <span class="block"><i class="fa-solid fa-earth-asia"></i> <span class="ml-1"><%= course.language %></span></span>
+      <span class="block"><i class="fa-solid fa-tag"></i> <span class="ml-2"><%= number_to_currency(course.price, unit:"₱") %></span></span>
+    </div>
   </div>
 <% end %>

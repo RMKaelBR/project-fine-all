@@ -10,13 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree
  *= require_self
  */
 
- main {
+main {
   flex-direction: column;
- }
+}
  
  nav {
   position: fixed;
@@ -39,31 +39,74 @@
   text-decoration: underline;
  } */
 
- button {
-  color: darkblue;
- }
+button {
+color: darkblue;
+}
 
- button:hover {
+button:hover {
+color: blue;
+text-decoration: underline;
+}
+
+trix-editor > blockquote {
+  border: 0 solid #ccc;
+  border-left-width: 0.3em;
+  margin-left: 0.3em;
+  padding-left: 0.6em
+}
+
+trix-editor > a {
+  cursor: pointer;
+  color: rgb(103, 103, 255);
+}
+
+a {
   color: blue;
-  text-decoration: underline;
- }
+  cursor: pointer;
+}
 
- .deleteColor {
-  color: maroon;
- }
-
- .deleteColor:hover {
-  color: red;
-  text-shadow: maroon;
- }
-
- .link-style {
-  color:#0c7cc7;
- }
-
- .dropdown {
-  position: relative;
+trix-editor > pre {
   display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 0.5em;
+  white-space: pre;
+  background-color: #eee;
+  overflow-x: auto;
+}
+
+trix-editor > ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+}
+
+trix-editor > ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+.deleteColor {
+color: maroon;
+}
+
+.deleteColor:hover {
+color: red;
+text-shadow: maroon;
+}
+
+.link-style {
+color:#0c7cc7;
+}
+
+.button-style {
+  color: black;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
 }
 
 .dropbtn {
@@ -173,28 +216,3 @@
   column-gap: 10px;
 }
 
- /* input[type="submit"] {
-  background-color: #FAFBFC;
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
- }
-
- input[type="submit"]:hover {
-  background-color: #F3F4F6;
-  text-decoration: none;
-  transition-duration: 0.1s;
- }
-
- input[type="submit"]:active {
-  background-color: #EDEFF2;
-  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-  transition: none 0s;
-}
-
-input[type="submit"]:focus {
-  outline: 1px transparent;
-} */

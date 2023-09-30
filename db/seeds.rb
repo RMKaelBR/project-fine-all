@@ -20,6 +20,9 @@
   Course.create!([{
     title: Faker::Fantasy::Tolkien.poem,
     description: Faker::JapaneseMedia::StudioGhibli.quote,
-    user_id: 3
+    user_id: 5,
+    short_description: Faker::Games::WarhammerFantasy.quote,
+    language: Faker::ProgrammingLanguage.name,
+    price: Faker::Number.between(from: 1000, to:10000)
   }])
 end

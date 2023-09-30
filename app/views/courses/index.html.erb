@@ -10,7 +10,7 @@
   </div>
 
   <div class="card-columns">
-    <% @courses.each do |course| %>
+    <% @courses.reverse.each do |course| %>
       <%= render 'courses/course', course: course %>
     <% end %>
   </div>
