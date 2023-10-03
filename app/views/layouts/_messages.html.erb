@@ -1,8 +1,10 @@
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <div class="<%= name.to_s == 'notice' ? 'success-message' : 'error-message' %> flex flex-col" role="alert">
-      <button aria-hidden="true" class="close justify-self-end self-end" data-dismiss="alert" type="button">x</button>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    </div>
+<div class="message-banner">
+  <% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <div class="<%= name.to_s == 'notice' ? 'success-message' : 'error-message' %> flex flex-col" role="alert">
+        <button aria-hidden="true" class="close justify-self-end self-end" data-dismiss="alert" type="button">x</button>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
