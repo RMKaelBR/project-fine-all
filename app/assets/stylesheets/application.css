@@ -152,20 +152,22 @@ display: inline-block;
   display: block;
 }
 
-.success-message {
-  background-color: #beffc0;
-  color: darkgray;
+.message-banner {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
   padding: 10px 15px;
   width: 100%;
-  text-align: center;
+}
+
+.success-message {
+  background-color: hsl(145, 100%, 95%, 0.5);
+  color: darkgray;
 }
 
 .error-message {
-  background-color: #FFCDD2;
+  background-color: hsl(0, 100%, 85%, 0.5);
   color: #D32F2F;
-  padding: 10px 15px;
-  width: 100%;
-  text-align: center;
 }
 
 .close-button {
