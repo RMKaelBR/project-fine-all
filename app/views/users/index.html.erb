@@ -1,15 +1,106 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  th > a {
+    color: black;
+  }
+
+</style>
+
 <div>
   <%= render "navigation/navigation" %>
 
   <div class="flex mb-3 justify-between items-center">
     <h1 class="font-bold text-4xl">Users <span class="font-normal text-2xl">(<%= @users.count %>)</span></h1>
-    <%# <%= link_to 'New course', new_course_path, class: "rounded-lg my-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
+  
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :email_cont, placeholder: "Email" %>
+    <%= f.search_field :sign_in_count_eq, placeholder: "Sign-in Count" %>
+    <%# <%= f.search_field :email_or_sign_in_count_eq, placeholder: "Email OR Sign-in Count" %>
+    <%= f.submit class:"mt-2 rounded-lg py-2 px-3 bg-gray-100 inline-block font-medium hover:bg-gray-300 cursor-pointer" %>
+    <%= link_to users_path, class:"button-style p-2 bg-gray-100 rounded-lg hover:bg-gray-300" do %>
+      <i class="fa-solid fa-arrows-rotate"></i>
+    <% end %>
+  <% end %>
+  
+
+  <table class="table-auto my-8">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>
+          <%= sort_link(@q, :email) %>
+        </th>
+        <th>created_at</th>
+        <th>
+          <%= sort_link(@q, :sign_in_count, "Sign-in Count", default_order: :desc) %>
+        </th>
+        <th>
+          <%= sort_link(@q, :current_sign_in_at, 'current_sign_in_at'.humanize, default_order: :desc) %>
+        </th>
+        <th>
+          <%= sort_link(@q, :last_sign_in_at, 'last_sign_in_at'.humanize, default_order: :desc) %>
+        </th>
+        <th>
+          <%= sort_link(@q, :current_sign_in_ip, 'current_sign_in_ip'.humanize, default_order: :desc) %>
+        </th>
+        <th>
+          <%= sort_link(@q, :last_sign_in_ip, 'last_sign_in_ip'.humanize, default_order: :desc) %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.id %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= user.created_at %>
+          </td>
+          <td class="text-center">
+            <%= user.sign_in_count %>
+          </td>
+          <td>
+            <%= user.current_sign_in_at %>
+          </td>
+          <td>
+            <%= user.last_sign_in_at %>
+          </td>
+          <td>
+            <%= user.current_sign_in_ip %>
+          </td>
+          <td>
+            <%= user.last_sign_in_ip %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class='card-columns'>
     <% @users.each do |user| %>
       <%= render 'users/user', user: user %>
     <% end %>
   </div>
-
 </div>
