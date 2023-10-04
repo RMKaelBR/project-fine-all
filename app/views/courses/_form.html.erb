@@ -13,12 +13,12 @@
 
   <div class="my-5">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :title, id: "course_title", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :description, for: "course_description" %>
-    <%= form.rich_text_area :description, class: "rich-text-area" %>
+    <%= form.label :description %>
+    <%= form.rich_text_area :description, id: "course_description", class: "rich-text-area" %>
   </div>
 
   <div class="my-5">
@@ -28,7 +28,8 @@
 
   <div class="my-5">
     <%= form.label :language %>
-    <%= form.select :language, [ "English", "Filipino", "Cebuano" ], {prompt: "Select a language"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%# <%= form.select :language, [ "English", "Filipino", "Cebuano" ], {prompt: "Select a language"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :language, Course.languages, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
     <div class="my-5">

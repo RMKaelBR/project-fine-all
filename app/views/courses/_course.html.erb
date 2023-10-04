@@ -8,7 +8,7 @@
   <div class="mt-4 flex text-xs font-bold tracking-tight bg-gray-700 py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
     <div>
       <span class="block"><i class="fa-regular fa-clock"></i> <span class="ml-2"><%= course.created_at.strftime('%d-%b-%Y') %></span></span>
-      <span class="block"><i class="fa-solid fa-chalkboard-user"></i> <span class="ml-1"><%= course.user %></span></span>
+      <span class="block"><i class="fa-solid fa-chalkboard-user"></i> <span class="ml-1"><%= course.user.username %></span></span>
     </div>
     <div class="ml-3">
       <span class="block"><i class="fa-solid fa-earth-asia"></i> <span class="ml-1"><%= course.language %></span></span>
