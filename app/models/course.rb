@@ -9,9 +9,22 @@ class Course < ApplicationRecord
   def to_s
     title
   end
-  
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "language", "price", "title", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["user"]
+  end
+
   has_rich_text :description
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  LANGUAGES = [:"English", :"Filipino", :"Cebuano"]
+  def self.languages
+    LANGUAGES.map{ |language| [language, language]}
+  end
 end
