@@ -7,9 +7,12 @@ class CoursesController < ApplicationController
       @courses = Course.where('title LIKE ?', "%#{params[:title]}%") #case-insensitive
     else
       # @courses = Course.all
-      @q = Course.ransack(params[:q])
+      # @q = Course.ransack(params[:q])
       # @courses = @q.result(distinct: true)
-      @courses = @q.result.includes(:user)
+      # @courses = @q.result.includes(:user)
+
+      @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+      @courses = @ransack_courses.result.includes(:user)
     end
   end
 

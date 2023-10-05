@@ -3,9 +3,12 @@
   <div class="flex flex-col items-center justify-center mx-auto lg:py-0">
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-400 dark:border-gray-300">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-          Sign Up
-        </h2>
+        <div class="flex w-full justify-between">
+          <%= link_to "< Log in instead", new_session_path(resource_name), class:"button-style justify-self-end rounded-lg inline-block py-1 px-5 bg-gray-200 font-medium hover:text-blue-700 hover:bg-gray-300" %>
+          <h2 class="justify-self-start text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            Sign Up
+          </h2>
+        </div>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= f.error_notification %>

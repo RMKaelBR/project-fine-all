@@ -3,27 +3,26 @@
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
-  <div class="flex-col">
-    <div class="flex justify-between">
+  <div class="fixed top-16 left-0 right-0 mx-auto bg-gray-100 shadow-md text-center">
+    <div class="flex justify-between center">
       <h1 class="font-bold text-4xl">Courses <span class="font-normal text-sm">(Showing <%= @courses.count %> out of <%= Course.all.count %>)</span></h1>
-      <%= link_to 'New course', new_course_path, class: "rounded-lg my-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to 'New course', new_course_path, class: "rounded-lg my-2 py-1 px-3 bg-blue-600 hover:bg-blue-800 text-white hover:text-orange-300 block font-medium" %>
     </div>
     <div class="flex content-center justify-center">
-      <%= search_form_for @q do |f| %>
+      <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
         <%= f.search_field :title_cont, placeholder: "Title", class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
-        <%= f.search_field :description_cont, placeholder: "Description", class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
+        <%= f.search_field :short_description_cont, placeholder: "Description", class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
         <%= f.search_field :price_lteq, placeholder: "Price", class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
-        <%= f.search_field :user_email_cont, placeholder: 'User email', class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
+        <%= f.search_field :user_email_cont, placeholder: 'Instructor', class: "shadow text-sm appearance-none bg-gray-200 text-gray-700 rounded mb-3 leading-tight focus:outline-none focus:bg-white hover:border-blue-700" %>
         <%= f.select :language_in, Course.languages, { prompt: "Select a Language"}, class: "shadow rounded-md border bg-gray-200 outline-none px-6 py-2 mt-2 text-sm focus:bg-white hover:border-blue-700" %>
-        <%# <%= f.select :language_in, ["English", "Filipino", "Cebuano"], { prompt: "Select a Language"}, class: "shadow rounded-md border bg-gray-200 outline-none px-6 py-2 mt-2 text-sm focus:bg-white hover:border-blue-700" %>
-        <%= f.submit class:"mt-2 rounded-lg py-2 px-3 bg-blue-200 inline-block font-medium hover:bg-blue-300 cursor-pointer" %>
+        <%= f.submit class:"rounded-lg py-2 px-3 bg-blue-200 inline-block font-medium hover:bg-blue-300 cursor-pointer" %>
         <%= link_to courses_path, class:"button-style p-2 bg-green-200 rounded-lg hover:bg-green-300" do %>
           <i class="fa-solid fa-arrows-rotate"></i>
         <% end %>
       <% end %>
     </div>
   </div>
-  <div class="card-columns">
+  <div class="card-columns mt-48">
     <% @courses.reverse.each do |course| %>
       <%= render 'courses/course', course: course %>
     <% end %>
