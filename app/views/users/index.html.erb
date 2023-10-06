@@ -27,7 +27,7 @@
   <%= render "navigation/navigation" %>
 
   <div class="flex mb-3 justify-between items-center">
-    <h1 class="font-bold text-4xl">Users <span class="font-normal text-2xl">(<%= @users.count %>)</span></h1>
+    <h1 class="font-bold text-4xl">Users <span class="font-normal text-2xl">(Showing <%= @users.count %> out of <%= User.all.count %>)</span></h1>
   </div>
   
   <%= search_form_for @q do |f| %>
