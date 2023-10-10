@@ -216,7 +216,3 @@ display: inline-block;
   column-count: 3;
   column-gap: 10px;
 }
-
-.flex-right-end {
-  justify-self: end;
-}

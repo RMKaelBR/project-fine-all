@@ -98,9 +98,16 @@
             <%= user.last_sign_in_ip %>
           </td>
           <td>
-            <% user.roles.each do |role| %>
-              <%= role.name %>
-            <% end %>
+            <div class="flex justify-between items-center text-normal">
+              <div class="inline-block text-xs">
+                <% user.roles.each do |role| %>
+                  <span><%= role.name %></span>
+                <% end %>
+              </div>
+              <%= link_to edit_user_path(user), class: "text-gray-900 hover:text-blue-600" do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
           </td>
         </tr>
       <% end %>
