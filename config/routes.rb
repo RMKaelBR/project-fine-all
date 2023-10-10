@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
   
   resources :courses
-  resources :users, only: [:index]
+  resources :users, only: [:index, :edit, :show, :update]
 
   get 'static_pages/landing_page', as: "landing_page"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
