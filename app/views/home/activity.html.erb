@@ -1,19 +1,78 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  th > a {
+    color: black;
+  }
+</style>
+
 <div>
   <%= render 'navigation/navigation' %>
   <h1 class="font-bold text-6xl">Website Activities <span class="font-normal text-sm">(<%= @activities.count %> so far.)</span></h1>
-  <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-    <% @activities.each do |activity| %>
-      <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        <ul>
-          <li>id: <%= activity.id %></li>
-          <li>trackable_type: <%= activity.trackable_type %></li>
-          <li>trackable_id: <%= activity.trackable_id %></li>
-          <li><%= link_to activity.trackable, activity.trackable, class:"text-blue-500" %></li>
-          <li>key: <%= activity.key %></li>
-          <li>parameters: <%= activity.parameters %></li>
-          <li>owner: <%= activity.owner %></li>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
+  <table class="table-auto my-8">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>
+          trackable_type
+        </th>
+        <th>trackable_id</th>
+        <th>
+          trackable activity
+        </th>
+        <th>
+          key
+        </th>
+        <th>
+          parameters
+        </th>
+        <th>
+          owner
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @activities.each do |activity| %>
+        <tr>
+          <td class="text-center">
+            <%= activity.id %>
+          </td>
+          <td class="text-center">
+            <%= activity.trackable_type %>
+          </td>
+          <td class="text-center">
+            <%= activity.trackable_id %>
+          </td>
+          <td class="text-center">
+            <%= link_to activity.trackable, activity.trackable, class:"text-blue-500" %>
+          </td>
+          <td class="text-center">
+            <%= activity.key %>
+          </td>
+          <td class="text-center">
+            <%= activity.parameters %>
+          </td>
+          <td class="text-center">
+            <%= activity.owner %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

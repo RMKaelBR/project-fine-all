@@ -23,6 +23,21 @@
         No</span>
       <% end %>
     </span>
-    
+    <div>
+      <span>Roles:</span>
+      <span class="block">
+        <% if user.roles.length == 0 %>
+          <span>(No roles set)</span>
+        <% else %>
+          <% user.roles.each do |role| %>
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium m-1 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"><%= role.name %></span>
+          <% end %>
+        <% end %>
+        <%= link_to edit_user_path(user), class: "ml-2 text-white hover:text-orange-400" do %>
+          <i class="fa-regular fa-pen-to-square"></i> Edit
+        <% end %>
+      </span>
+      
+    </div>
   </div>
 </div>
