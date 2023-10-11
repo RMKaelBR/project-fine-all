@@ -1,0 +1,7 @@
+<div>
+  <%= render "navigation/navigation" %>
+
+  <h1 class="font-bold text-6xl">User#show</h1>
+  <h3 class="text-4xl">Showing: <%= @user.username %></h3>
+  <%= render 'users/user', user: @user %>
+</div>

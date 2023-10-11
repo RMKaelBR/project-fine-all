@@ -1,6 +1,6 @@
 <div class="card block min-h-400 max-w-md p-6 my-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-indigo-100 dark:bg-indigo-900 dark:border-gray-700 dark:hover:bg-indigo-900">
   <h5 class="mb-2 text-2xl font-bold tracking-tight  dark:text-gray-200">
-    <i class="fa-solid fa-user"></i> <%= user.email %>
+    <i class="fa-solid fa-user"></i> <%=link_to user.email, user_path(user), class:"text-blue-400" %>
   </h5>
   <div class="mt-4 text-xs font-bold tracking-tight py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
     <span><i class="fa-regular fa-clock"></i> Signed up <%= time_ago_in_words(user.created_at) %> ago </span>

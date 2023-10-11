@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true)
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
     authorize @user
   end
