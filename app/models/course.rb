@@ -5,7 +5,8 @@ class Course < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
 
   belongs_to :user
-  
+  has_many :lessons, dependent: :destroy
+
   def to_s
     title
   end
