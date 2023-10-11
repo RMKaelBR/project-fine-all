@@ -5,6 +5,10 @@
   <span class="font-normal text-gray-800 dark:text-gray-300">
     <%= course.short_description %>
   </span>
+  <br/>
+  <span class="font-normal text-gray-800 dark:text-gray-300">
+    <i class="fa-solid fa-book"></i> <%= course.lessons.count%>
+  </span>
   <div class="mt-4 flex text-xs font-bold tracking-tight bg-gray-700 py-1 px-6 -mx-6 text-gray-900 dark:text-gray-300">
     <div>
       <span class="block"><i class="fa-regular fa-clock"></i> <span class="ml-2"><%= course.created_at.strftime('%d-%b-%Y') %></span></span>

@@ -1,41 +1,49 @@
+<%= render 'navigation/navigation'%>
 
-<div class="mx-auto md:w-2/3 w-full flex flex-col">
-  <%= render 'navigation/navigation'%>
+<div class="courses-show">
   <div>
     <%= link_to "Courses", courses_path, class: "link-style" %> / <%= link_to @course.title, course_path(@course), class: "link-style" %>
   </div>
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+   <div class="flex"> <%#<div class="mx-auto md:w-2/3 w-full flex"> %>
+    <div><%#<div class="mx-auto">%>
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
 
-    <div>
-      <p class="my-5">
-        <strong class="block underline font-medium mb-1">Title:</strong>
-        <%= @course.title %>
-      </p>
+      <div>
+        <p class="my-5">
+          <strong class="block underline font-medium mb-1">Title:</strong>
+          <%= @course.title %>
+        </p>
 
-      <p class="mt-5">
-        <strong class="block underline font-medium mb-1">Description:</strong>
-        <%= @course.description %>
-      </p>
+        <p class="mt-5">
+          <strong class="block underline font-medium mb-1">Description:</strong>
+          <%= @course.description %>
+        </p>
 
-      <p class="my-5">
-        <strong class="block underline font-medium mb-1">Created at: </strong><%= @course.created_at%>
-        <strong class="block underline font-medium mb-1">Owner: </strong><%= @course.user %>
-      </p>
+        <p class="my-5">
+          <strong class="block underline font-medium mb-1">Created at: </strong><%= @course.created_at%>
+          <strong class="block underline font-medium mb-1">Owner: </strong><%= @course.user %>
+        </p>
 
-      <p class="my-5">
-        <strong class="font-medium underline mb-1">Language</strong>:
-        <%= @course.language %>
-      </p>
+        <p class="my-5">
+          <strong class="font-medium underline mb-1">Language</strong>:
+          <%= @course.language %>
+        </p>
 
-      <p class="my-5">
-        <strong class="font-medium underline mb-1">Price</strong>:
-        <%= number_to_currency(@course.price, unit:"₱") %>
-      </p>
+        <p class="my-5">
+          <strong class="font-medium underline mb-1">Price</strong>:
+          <%= number_to_currency(@course.price, unit:"₱") %>
+        </p>
+      </div>
     </div>
-
+    <div>
+        <% @lessons.each do |lesson| %>
+          <%= render 'lessons/lesson', lesson: lesson %>
+        <% end %>
+      </div>
+  </div>
+  <div class="course-show-buttons">
     <% if policy(@course).edit? %>
       <%= link_to 'Edit this course', edit_course_path(@course), class: "button-style mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:text-blue-700 hover:bg-green-100" %>
       <div class="inline-block ml-2">
