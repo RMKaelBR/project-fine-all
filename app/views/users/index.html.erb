@@ -104,8 +104,10 @@
                   <span><%= role.name %></span>
                 <% end %>
               </div>
-              <%= link_to edit_user_path(user), class: "text-gray-900 hover:text-blue-600" do %>
-                <i class="fa-regular fa-pen-to-square"></i>
+              <% if policy(user).edit? %>
+                <%= link_to edit_user_path(user), class: "text-gray-900 hover:text-blue-600" do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
               <% end %>
             </div>
           </td>
