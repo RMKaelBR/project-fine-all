@@ -4,6 +4,7 @@ class LessonsController < ApplicationController
   # GET /lessons or /lessons.json
   def index
     @lessons = Lesson.all
+    authorize @lessons
   end
 
   # GET /lessons/1 or /lessons/1.json
@@ -24,7 +25,7 @@ class LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-
+    authorize @lesson
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to lesson_url(@lesson), notice: "Lesson was successfully created." }
@@ -53,12 +54,13 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1 or /lessons/1.json
   def destroy
     authorize @lesson
+    course_id = @lesson.course_id
     @lesson.destroy
 
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: "Lesson was successfully destroyed." }
+      format.html { redirect_to course_path(course_id), notice: "Lesson was successfully destroyed." }
       format.json { head :no_content }
-    end
+    end 
   end
 
   private

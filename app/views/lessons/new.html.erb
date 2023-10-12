@@ -1,6 +1,12 @@
 <%= render 'navigation/navigation' %>
 
 <div class="mx-auto md:w-2/3 w-full">
+  <div>
+    <%= link_to "Courses", courses_path, class: "link-style" %>
+    /
+    <%= link_to Course.find(params[:course_id]).title, course_path(Course.find(params[:course_id])), class: "link-style" %>
+    / New Lesson
+  </div>
   <h1 class="font-bold text-4xl">New lesson</h1>
 
   <%= render "form", lesson: @lesson %>

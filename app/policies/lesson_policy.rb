@@ -6,6 +6,10 @@ class LessonPolicy < ApplicationPolicy
     # end
   end
 
+  def index?
+    @user.has_role?(:admin)
+  end
+  
   def show?
     @record.course.user_id == @user.id || @user.has_role?(:admin)
   end
@@ -23,6 +27,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def create?
+    @record.course.user_id == @user.id if @record.course
     # @user.has_role?(:teacher)
   end
 
