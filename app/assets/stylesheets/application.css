@@ -48,6 +48,11 @@ trix-editor > a {
   color: rgb(103, 103, 255);
 }
 
+trix-editor > h1 {
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
 a {
   color: blue;
   cursor: pointer;
@@ -80,9 +85,9 @@ trix-editor > ul {
   width: 70%;
 }
 
-.deleteColor {
-color: maroon;
-}
+/* .deleteColor {
+color: green;
+} */
 
 .deleteColor:hover {
 color: red;

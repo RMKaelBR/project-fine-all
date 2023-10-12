@@ -4,11 +4,13 @@
     <%= link_to lesson do %><%= lesson.title %><% end %>
   </p>
 
+  <% if policy(lesson).edit? %>
   <p class="my-5">
     <strong class="block font-medium mb-1">Content:</strong>
     <%= lesson.content %>
   </p>
-
+  <% end %>
+  
   <% unless controller_name == 'courses'%>
     <p class="my-5">
       <strong class="block font-medium mb-1">Course:</strong>

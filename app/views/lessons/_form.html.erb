@@ -18,14 +18,28 @@
 
   <div class="my-5">
     <%= form.label :content %>
-    <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.rich_text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :course_id %>
-    <%= form.collection_select(:course_id, Course.all, :id, :title, { include_blank: "Select a course" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" }) %>
+    <%= puts "params[:course_id] is: #{params[:course_id]}"%>
+    <%= puts "params[:course_id] is: #{:course_id}"%>
+    <%= form.collection_select(
+      :course_id, 
+      Course.all, 
+      :id, 
+      :title, 
+      {
+      include_blank: "Select a course",
+      selected: params[:course_id] || lesson.course_id
+      },
+      {
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full",
+      }
+      ) %>
   </div>
-
+  
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

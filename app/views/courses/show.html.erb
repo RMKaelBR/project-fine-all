@@ -2,9 +2,22 @@
 
 <div class="courses-show">
   <div>
-    <%= link_to "Courses", courses_path, class: "link-style" %> / <%= link_to @course.title, course_path(@course), class: "link-style" %>
+    <%= link_to "Courses", courses_path, class: "link-style" %>
+    /
+    <%= link_to @course.title, course_path(@course), class: "link-style" %>
   </div>
-   <div class="flex"> <%#<div class="mx-auto md:w-2/3 w-full flex"> %>
+
+  <div class="course-show-buttons">
+    <% if policy(@course).edit? %>
+      <%= link_to 'Edit course', edit_course_path(@course), class: "button-style mt-2 rounded-lg py-2 px-4 bg-blue-400 inline-block font-medium hover:text-blue-700 hover:bg-blue-200" %>
+      <div class="inline-block ml-2">
+        <%= button_to 'Delete course', course_path(@course), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this course?' }, class: "mt-2 rounded-lg py-2 px-4 bg-red-400 font-medium hover:bg-red-200 deleteColor" %> 
+      </div>
+    <% end %>
+    <%= link_to 'Courses List', courses_path, class: "button-style mt-2 rounded-lg py-2 px-4 bg-gray-400 inline-block font-medium hover:text-blue-700 hover:bg-gray-200" %>
+  </div>
+
+  <div class="flex"> <%#<div class="mx-auto md:w-2/3 w-full flex"> %>
     <div><%#<div class="mx-auto">%>
       <% if notice.present? %>
         <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -23,7 +36,7 @@
 
         <p class="my-5">
           <strong class="block underline font-medium mb-1">Created at: </strong><%= @course.created_at%>
-          <strong class="block underline font-medium mb-1">Owner: </strong><%= @course.user %>
+          <strong class="block underline font-medium mb-1">Owner: </strong><%=link_to @course.user.username, user_path(@course.user)%>
         </p>
 
         <p class="my-5">
@@ -37,19 +50,16 @@
         </p>
       </div>
     </div>
-    <div>
-        <% @lessons.each do |lesson| %>
-          <%= render 'lessons/lesson', lesson: lesson %>
-        <% end %>
-      </div>
-  </div>
-  <div class="course-show-buttons">
-    <% if policy(@course).edit? %>
-      <%= link_to 'Edit this course', edit_course_path(@course), class: "button-style mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:text-blue-700 hover:bg-green-100" %>
-      <div class="inline-block ml-2">
-        <%= button_to 'Delete this course', course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium hover:bg-red-100 deleteColor" %> 
-      </div>
-    <% end %>
-    <%= link_to 'Back to courses', courses_path, class: "button-style mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:text-blue-700 hover:bg-gray-300" %>
+    <div class="ml-4">
+      <% if @lessons.count == 0 %>
+        <div class="mt-4">No lessons here!</div><br/>
+      <% end %>
+
+      <% @lessons.each do |lesson| %>
+        <%= render 'lessons/lesson', lesson: lesson %>
+      <% end %>
+      
+      <%= link_to 'Add Lesson', new_lesson_path(course_id: @course.id), class: "button-style mt-2 rounded-lg py-1 px-2 bg-green-400 inline-block font-medium hover:text-blue-700 hover:bg-green-200" %>
+    </div>
   </div>
 </div>
