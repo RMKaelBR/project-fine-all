@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true)
+    authorize @users
   end
 
   def show
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   def edit
     authorize @user
   end
-
+  
   def update
     authorize @user
     if @user.update(user_params)
