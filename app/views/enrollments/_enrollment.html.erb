@@ -2,12 +2,12 @@
   <div class="flex justify-between">
     <p class="my-5">
       <strong class="block font-medium mb-1">Course:</strong>
-      <%= enrollment.course %>
+      <%= link_to enrollment.course, course_path(enrollment.course.id) %>
     </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">User:</strong>
-      <%= enrollment.user.username %>
+      <%= link_to enrollment.user.username, user_path(enrollment.user) %>
     </p>
 
     <p class="my-5">

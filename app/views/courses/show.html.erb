@@ -62,7 +62,7 @@
             <% if @course.user == current_user || current_user.has_role?(:admin) %>
               <br/>
               <% @course.enrollments.each do |enrollment| %>
-                <span><%= link_to user_path(enrollment.user) do %><%= enrollment.user.username %><% end %>, </span>
+                <span><%= link_to enrollment.user.username, enrollment %>, </span>
               <% end %>
             <% end %>
           <% end %>

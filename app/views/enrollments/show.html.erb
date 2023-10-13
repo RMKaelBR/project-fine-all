@@ -10,11 +10,14 @@
     <% if current_user == @enrollment.user %>
       <%= link_to (@enrollment.review.present? ? "Edit" : "Add Review"), edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <% end %>
-    <% if current_user.has_role?(:admin) %>
+    <% if current_user.has_role?(:admin) || current_user == @enrollment.course.user %>
       <div class="inline-block ml-2">
-        <%= button_to 'Delete this enrollment', enrollment_path(@enrollment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= button_to 'Delete this enrollment', enrollment_path(@enrollment), 
+            method: :delete, 
+            data: {turbo_confirm: "Are you sure you want to delete #{@enrollment.user.username}'s enrollment in your class #{@enrollment.course}?"}, 
+            class: "mt-2 rounded-lg py-3 px-5 font-medium bg-red-200 font-medium hover:bg-red-400 deleteColor" %>
       </div>
     <% end %>
-    <%= link_to 'To parent Course', course_path(@enrollment.course_id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'To parent Course', course_path(@enrollment.course_id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300 hover:underline" %>
   </div>
 </div>
