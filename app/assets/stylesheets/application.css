@@ -206,6 +206,10 @@ display: inline-block;
   right: 0px;
 }
 
+#price-paragraph > a {
+  color: black;
+}
+
 .card {
   max-height: 500px;
   overflow: hidden;

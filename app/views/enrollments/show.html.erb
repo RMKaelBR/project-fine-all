@@ -1,16 +1,20 @@
 <%= render 'navigation/navigation', class: 'z-50' %>
 <div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+  <div class="mx-auto w-2/3 max-w-full">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
     <%= render @enrollment %>
 
-    <%= link_to 'Edit this enrollment', edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this enrollment', enrollment_path(@enrollment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to Courses', courses_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if current_user == @enrollment.user %>
+      <%= link_to (@enrollment.review.present? ? "Edit" : "Add Review"), edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+    <% if current_user.has_role?(:admin) %>
+      <div class="inline-block ml-2">
+        <%= button_to 'Delete this enrollment', enrollment_path(@enrollment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+    <% end %>
+    <%= link_to 'To parent Course', course_path(@enrollment.course_id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

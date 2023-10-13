@@ -12,6 +12,13 @@
     background-color: #f2f2f2;
   }
 
+  .thinner-column {
+    width: 100px;
+  }
+
+  .thin-column {
+    width: 150px; /* Adjust the width as needed */
+  }
 
   th > a {
     color: black;
@@ -28,59 +35,72 @@
     <h1 class="font-bold text-4xl">Enrollments</h1>
   </div>
 
-  <table class="table-auto my-8 w-4/5">
+  <table class="table-auto my-8">
     <thead>
       <tr>
         <th class="text-left">
           Course<%# <%= sort_link(@q, :id) %>
         </th>
         <th class="text-left">
+          Teacher<%# <%= sort_link(@q, :email) %>
+        </th>
+        <th class="text-left">
           User<%# <%= sort_link(@q, :email) %>
-        </th>
-        <th>
-          Rating
-        </th>
-        <th>
-          Review<%# <%= sort_link(@q, :sign_in_count, "Sign-in Count", default_order: :desc) %>
         </th>
         <th>
           Price<%# <%= sort_link(@q, :current_sign_in_at, 'current_sign_in_at'.humanize, default_order: :desc) %>
         </th>
-        <th></th>
-        <th></th>
+        <th>
+          Rating
+        </th>
+        <th class="text-left">
+          Review<%# <%= sort_link(@q, :sign_in_count, "Sign-in Count", default_order: :desc) %>
+        </th>
+        <th class="thinner-column"></th>
+        <th class="thinner-column"></th>
+        <th class="thin-column"></th>
       </tr>
     </thead>
     <tbody>
       <% @enrollments.each do |enrollment| %>
-        <%# <% if enrollment.user == current_user %>
+        <% if enrollment.user == current_user || enrollment.course.user == current_user ||current_user.has_role?(:admin) %>
           <tr>
             <td>
               <%= enrollment.course %>
             </td>
             <td>
-              <%=link_to enrollment.user.username, user_path(enrollment.user) %>
-            </td>
-            <td class="text-center">
-              <%= enrollment.rating %>
+              <%=link_to enrollment.course.user.username, user_path(enrollment.course.user) %>
             </td>
             <td>
-              <%= enrollment.review %>
+              <%=link_to enrollment.user.username, user_path(enrollment.user) %>
             </td>
             <td class= "text-center">
               <%= number_to_currency(enrollment.price, unit:"₱") %>
             </td>
-            <td>
-              <%= link_to "Show", enrollment, class: "rounded-lg mb-1 px-2 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+            <td class="text-center">
+              <%= enrollment.rating %><% if enrollment.rating.present? %><span class="text-yellow-400"><i class="fa-solid fa-star"></i></span><% end %>
             </td>
-            <%# <td>
-              <%= link_to 'Edit', edit_enrollment_path(enrollment), class: "rounded-lg mb-1 ml-2 px-2 bg-blue-200 inline-block font-medium hover:text-blue-200 hover:bg-blue-400" %>
-            <%# </td> %>
             <td>
-              <%= button_to 'Delete', enrollment_path(enrollment), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "rounded-lg mb-1 ml-2 px-2 bg-red-200 font-medium hover:bg-red-300 hover:text-red-100 deleteColor" %>
+              <%= enrollment.review %>
+            </td>
+            <td class="text-center">
+              <% if enrollment.review.present? %>
+                <%= link_to "See Review", enrollment, class: "rounded-lg text-sm mb-1 px-2 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <% if enrollment.user == current_user %>
+                <%= link_to (enrollment.review.present? ? "Edit Review" : "Add Review"), edit_enrollment_path(enrollment), class: "rounded-lg text-sm mb-1 ml-2 px-1 bg-blue-200 inline-block font-medium hover:text-blue-200 hover:bg-blue-400" %>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <% if current_user.has_role?(:admin)%>
+                <%= button_to 'Delete Enrollment', enrollment_path(enrollment), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "rounded-lg text-xs mb-1 ml-2 px-2 bg-red-200 font-medium hover:bg-red-300 hover:text-red-100 deleteColor" %>
+              <% end %>
             </td>
           </tr>
         <% end %>
-      <%# <% end %>
+      <% end %>
     </tbody>
   </table>
   

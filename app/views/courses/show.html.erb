@@ -1,9 +1,3 @@
-<style>
-  #price-paragraph > a {
-    color: blue;
-  }
-</style>
-
 <%= render 'navigation/navigation'%>
 
 <div class="courses-show">
@@ -27,7 +21,7 @@
   <% end %>
   <div class="flex"> <%#<div class="mx-auto md:w-2/3 w-full flex"> %>
     <div><%#<div class="mx-auto">%>
-      <div class="course-overview px-4 mt-4 shadow rounded-md border border-gray-200 bg-gray-100 outline-none">
+      <div class="course-overview px-4 mt-4 shadow rounded-md border border-gray-200 bg-gray-100 outline-none max-w-xl">
         <p class="my-5">
           <strong class="block underline font-medium mb-1">Title:</strong>
           <%= @course.title %>
@@ -48,20 +42,43 @@
           <%= @course.language %>
         </p>
 
-        <p id="price-paragraph" class="my-5">
+        <div id="price-paragraph" class="my-5">
           <%# <strong class="font-medium underline mb-1">Price</strong>: %>
           <%= enrollment_button(@course) %>
+          <br/><br/>
+          <% if @course.enrollments.where(user: current_user).present? %>
+            <div class="p-2 shadow rounded-md border border-gray-200 bg-white outline-none w-4/5"><%= review_button(@course, current_user) %></div>
+          <% end %>
+          <% if @course.enrollments.any? %>
+            Reviews:
+            <% @course.enrollments.each do |enrollment| %>
+              <% next if enrollment.user == current_user %>
+              <div class="p-2 shadow rounded-md border border-gray-200 bg-white outline-none w-4/5">
+                <%= link_to enrollment do %><%= enrollment.rating %><span class="text-yellow-400"><i class="fa-solid fa-star"></i></span> by <%= enrollment.user.username %><% end %>
+              </div>
+            <% end %>
+            <br/><br/>
+            <span><%= @course.enrollments.count %> Enrolled Students</span>
+            <% if @course.user == current_user || current_user.has_role?(:admin) %>
+              <br/>
+              <% @course.enrollments.each do |enrollment| %>
+                <span><%= link_to user_path(enrollment.user) do %><%= enrollment.user.username %><% end %>, </span>
+              <% end %>
+            <% end %>
+          <% end %>
           <%# <%= number_to_currency(@course.price, unit:"₱") %>
-        </p>
+        </div>
       </div>
     </div>
-    <div class="ml-4">
+    <div class="ml-4 ">
       <% if @lessons.count == 0 %>
-        <div class="mt-4">No lessons here!</div><br/>
+        <div class="mt-4 px-4 shadow rounded-md border border-gray-200 bg-gray-100 outline-none">No lessons here!</div><br/>
       <% end %>
 
       <% @lessons.each do |lesson| %>
-        <%= render 'lessons/lesson', lesson: lesson %>
+        <div class="p-4 m-4 shadow rounded-md border border-gray-200 bg-gray-100 outline-none">
+          <%= render 'lessons/lesson', lesson: lesson %>
+        </div>
       <% end %>
       
       <% if current_user == @course.user %>
