@@ -18,10 +18,9 @@ class EnrollmentsController < ApplicationController
   end
 
   # GET /enrollments/1/edit
-  # We don't need to edit. -miki 2023-10-13
-  # def edit
-  #   authorize @enrollment
-  # end
+  def edit
+    authorize @enrollment
+  end
 
   # POST /enrollments or /enrollments.json
   def create()
