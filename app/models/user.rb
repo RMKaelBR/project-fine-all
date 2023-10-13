@@ -5,6 +5,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+         
+  has_many :courses
+  has_many :enrollments
+
   def to_s
     email
   end
@@ -21,7 +25,6 @@ class User < ApplicationRecord
     ["courses"]
   end
  
-  has_many :courses
 
   extend FriendlyId
   friendly_id :email, use: :slugged
@@ -40,6 +43,11 @@ class User < ApplicationRecord
 
   validate :must_have_a_role, on: :update
 
+  
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
+  end
+  
   private
   def must_have_a_role
     puts "must_have_a_role validation called"
@@ -48,4 +56,5 @@ class User < ApplicationRecord
       puts "added some shit"
     end
   end
+
 end

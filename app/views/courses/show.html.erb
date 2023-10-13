@@ -1,3 +1,9 @@
+<style>
+  #price-paragraph > a {
+    color: blue;
+  }
+</style>
+
 <%= render 'navigation/navigation'%>
 
 <div class="courses-show">
@@ -16,21 +22,19 @@
     <% end %>
     <%= link_to 'Courses List', courses_path, class: "button-style mt-2 rounded-lg py-2 px-4 bg-gray-400 inline-block font-medium hover:text-blue-700 hover:bg-gray-200" %>
   </div>
-
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
   <div class="flex"> <%#<div class="mx-auto md:w-2/3 w-full flex"> %>
     <div><%#<div class="mx-auto">%>
-      <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-      <% end %>
-
-      <div>
+      <div class="course-overview px-4 mt-4 shadow rounded-md border border-gray-200 bg-gray-100 outline-none">
         <p class="my-5">
           <strong class="block underline font-medium mb-1">Title:</strong>
           <%= @course.title %>
         </p>
 
         <p class="mt-5">
-          <strong class="block underline font-medium mb-1">Description:</strong>
+          <span class="block text-sm underline mb-1">Description:</span>
           <%= @course.description %>
         </p>
 
@@ -44,9 +48,10 @@
           <%= @course.language %>
         </p>
 
-        <p class="my-5">
-          <strong class="font-medium underline mb-1">Price</strong>:
-          <%= number_to_currency(@course.price, unit:"₱") %>
+        <p id="price-paragraph" class="my-5">
+          <%# <strong class="font-medium underline mb-1">Price</strong>: %>
+          <%= enrollment_button(@course) %>
+          <%# <%= number_to_currency(@course.price, unit:"₱") %>
         </p>
       </div>
     </div>
@@ -59,7 +64,9 @@
         <%= render 'lessons/lesson', lesson: lesson %>
       <% end %>
       
-      <%= link_to 'Add Lesson', new_lesson_path(course_id: @course.id), class: "button-style mt-2 rounded-lg py-1 px-2 bg-green-400 inline-block font-medium hover:text-blue-700 hover:bg-green-200" %>
+      <% if current_user == @course.user %>
+        <%= link_to 'Add Lesson', new_lesson_path(course_id: @course.id), class: "button-style mt-2 rounded-lg py-1 px-2 bg-green-400 inline-block font-medium hover:text-blue-700 hover:bg-green-200" %>
+      <% end %>
     </div>
   </div>
 </div>

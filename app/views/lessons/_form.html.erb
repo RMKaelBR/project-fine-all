@@ -23,8 +23,6 @@
 
   <div class="my-5">
     <%= form.label :course_id %>
-    <%= puts "params[:course_id] is: #{params[:course_id]}"%>
-    <%= puts "params[:course_id] is: #{:course_id}"%>
     <%= form.collection_select(
       :course_id, 
       Course.all, 
