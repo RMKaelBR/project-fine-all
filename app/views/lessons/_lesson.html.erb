@@ -1,7 +1,6 @@
 <div id="<%= dom_id lesson %>">
   <p class="mb-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= link_to lesson do %><%= lesson.title %><% end %>
+    <strong class="block font-medium mb-1"><%= link_to "#{lesson.row_order_rank + 1} #{lesson.title}", lesson, class:"text-blue-500" %></strong>
   </p>
 
   <% if policy(lesson).show? %>
@@ -17,7 +16,6 @@
       <%= Course.find(lesson.course_id).title %>
     </p>
   <% end %>
-
   <% if action_name != "show" %>
     <%= link_to "Show this lesson", lesson, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this lesson', edit_lesson_path(lesson), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

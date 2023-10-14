@@ -190,6 +190,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ranked-model (0.4.9)
+      activerecord (>= 5.2)
     ransack (4.0.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
@@ -267,6 +269,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit
   rails (~> 7.0.8)
+  ranked-model
   ransack
   rolify
   selenium-webdriver

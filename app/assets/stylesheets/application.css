@@ -225,3 +225,7 @@ display: inline-block;
   column-count: 3;
   column-gap: 10px;
 }
+
+.lesson-changer {
+  min-width: 15rem;
+}
